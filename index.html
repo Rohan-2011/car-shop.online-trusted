@@ -12,6 +12,51 @@
     --navy:#0b2b5c; --navy-dark:#071d40; --red:#e03a3a; --red-dark:#b82b2b;
     --bg:#f5f7fc; --text:#141c2c; --muted:#62748c; --line:#e6eaf0;
   }
+ <!-- ==================== AUTH MODAL ==================== -->
+<div class="modal" id="authModal">
+  <div class="modal-content" style="max-width:440px;">
+    <div class="modal-header">
+      <h2 id="authTitle">Sign in to CarBD</h2>
+      <button class="close-modal" onclick="closeAuth()">&times;</button>
+    </div>
+
+    <!-- TABS -->
+    <div style="display:flex;gap:.5rem;background:#f5f7fc;padding:.4rem;border-radius:40px;margin-bottom:1.5rem;">
+      <button id="tabSignin" onclick="switchAuthTab('signin')"
+        style="flex:1;padding:.6rem;border-radius:40px;font-weight:600;background:#0b2b5c;color:#fff;transition:.2s;">
+        Sign In
+      </button>
+      <button id="tabSignup" onclick="switchAuthTab('signup')"
+        style="flex:1;padding:.6rem;border-radius:40px;font-weight:600;background:transparent;color:#2f3b4e;transition:.2s;">
+        Sign Up
+      </button>
+    </div>
+
+    <!-- SIGN IN FORM -->
+    <form id="signinForm" onsubmit="handleSignin(event)">
+      <div class="input-group"><label>Email</label><input type="email" id="signinEmail" required></div>
+      <div class="input-group"><label>Password</label><input type="password" id="signinPass" required></div>
+      <button type="submit" class="btn-primary" style="width:100%;padding:1rem;border-radius:40px;">
+        <i class="fas fa-sign-in-alt"></i> Sign In
+      </button>
+    </form>
+
+    <!-- SIGN UP FORM -->
+    <form id="signupForm" onsubmit="handleSignup(event)" style="display:none;">
+      <div class="input-group"><label>Full name</label><input type="text" id="signupName" required></div>
+      <div class="input-group"><label>Email</label><input type="email" id="signupEmail" required></div>
+      <div class="input-group"><label>Password</label><input type="password" id="signupPass" minlength="4" required></div>
+      <div class="input-group"><label>Phone</label><input type="tel" id="signupPhone" placeholder="+880 17XX XXXXXX" required></div>
+      <button type="submit" class="btn-primary" style="width:100%;padding:1rem;border-radius:40px;">
+        <i class="fas fa-user-plus"></i> Create Account
+      </button>
+    </form>
+
+    <p style="text-align:center;margin-top:1rem;font-size:.85rem;color:#62748c;">
+      Your data is stored locally in your browser.
+    </p>
+  </div>
+</div>
   body{background:var(--bg);color:var(--text);line-height:1.55;}
   a{text-decoration:none;color:inherit;}
   button{font-family:inherit;cursor:pointer;border:none;}
@@ -798,6 +843,164 @@ function showToast(msg){
 renderFeatured();
 renderBuyGrid();
 </script>
+/* ==================== AUTH SYSTEM ==================== */
+let currentUser = JSON.parse(localStorage.getItem('carbd_user') || 'null');
 
+function getUsers(){
+  return JSON.parse(localStorage.getItem('carbd_users') || '[]');
+}
+function saveUsers(users){
+  localStorage.setItem('carbd_users', JSON.stringify(users));
+}
+
+function openAuth(mode='signin'){
+  document.getElementById('authModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  switchAuthTab(mode);
+}
+function closeAuth(){
+  document.getElementById('authModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function switchAuthTab(mode){
+  const signinForm = document.getElementById('signinForm');
+  const signupForm = document.getElementById('signupForm');
+  const tabSignin = document.getElementById('tabSignin');
+  const tabSignup = document.getElementById('tabSignup');
+  const title = document.getElementById('authTitle');
+
+  if(mode === 'signin'){
+    signinForm.style.display = 'block';
+    signupForm.style.display = 'none';
+    tabSignin.style.background = '#0b2b5c'; tabSignin.style.color = '#fff';
+    tabSignup.style.background = 'transparent'; tabSignup.style.color = '#2f3b4e';
+    title.textContent = 'Sign in to CarBD';
+  } else {
+    signinForm.style.display = 'none';
+    signupForm.style.display = 'block';
+    tabSignup.style.background = '#0b2b5c'; tabSignup.style.color = '#fff';
+    tabSignin.style.background = 'transparent'; tabSignin.style.color = '#2f3b4e';
+    title.textContent = 'Create your account';
+  }
+}
+
+function handleSignup(e){
+  e.preventDefault();
+  const name = document.getElementById('signupName').value.trim();
+  const email = document.getElementById('signupEmail').value.trim().toLowerCase();
+  const pass = document.getElementById('signupPass').value;
+  const phone = document.getElementById('signupPhone').value.trim();
+
+  const users = getUsers();
+  if(users.some(u => u.email === email)){
+    showToast('❌ Email already registered. Please sign in.');
+    return;
+  }
+
+  const newUser = { name, email, pass, phone };
+  users.push(newUser);
+  saveUsers(users);
+
+  // auto sign in
+  currentUser = newUser;
+  localStorage.setItem('carbd_user', JSON.stringify(currentUser));
+  updateNavbar();
+  closeAuth();
+  showToast('🎉 Welcome, ' + name + '!');
+  e.target.reset();
+}
+
+function handleSignin(e){
+  e.preventDefault();
+  const email = document.getElementById('signinEmail').value.trim().toLowerCase();
+  const pass = document.getElementById('signinPass').value;
+
+  const users = getUsers();
+  const user = users.find(u => u.email === email && u.pass === pass);
+
+  if(!user){
+    showToast('❌ Wrong email or password.');
+    return;
+  }
+
+  currentUser = user;
+  localStorage.setItem('carbd_user', JSON.stringify(currentUser));
+  updateNavbar();
+  closeAuth();
+  showToast('👋 Welcome back, ' + user.name + '!');
+  e.target.reset();
+}
+
+function signout(){
+  currentUser = null;
+  localStorage.removeItem('carbd_user');
+  updateNavbar();
+  showToast('👋 Signed out.');
+}
+
+function updateNavbar(){
+  const nav = document.getElementById('navActions');
+  if(!nav) return;
+
+  if(currentUser){
+    const initials = currentUser.name.split(' ').map(n => n[0]).join('').slice(0,2).toUpperCase();
+    nav.innerHTML = `
+      <div style="display:flex;align-items:center;gap:.7rem;">
+        <div style="display:flex;align-items:center;gap:.5rem;background:#f5f7fc;padding:.4rem .8rem .4rem .4rem;border-radius:40px;border:1px solid #e6eaf0;">
+          <div style="width:32px;height:32px;border-radius:50%;background:#0b2b5c;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;">${initials}</div>
+          <span style="font-weight:600;font-size:.88rem;color:#0b2b5c;">${currentUser.name.split(' ')[0]}</span>
+        </div>
+        <button class="btn-outline" onclick="signout()" style="padding:.5rem 1rem;font-size:.85rem;">
+          <i class="fas fa-sign-out-alt"></i> Sign out
+        </button>
+        <button class="btn-primary" onclick="goToSell()" style="padding:.55rem 1.1rem;font-size:.85rem;">
+          <i class="fas fa-plus-circle"></i> Post Ad
+        </button>
+      </div>`;
+  } else {
+    nav.innerHTML = `
+      <button class="btn-outline" onclick="openAuth('signin')">
+        <i class="fas fa-user"></i> Sign in
+      </button>
+      <button class="btn-primary" onclick="goToSell()">
+        <i class="fas fa-plus-circle"></i> Post Ad
+      </button>`;
+  }
+}
+
+function goToSell(){
+  if(!currentUser){
+    showToast('🔒 Please sign in to post an ad.');
+    openAuth('signin');
+    return;
+  }
+  showPage('sell');
+}
+
+/* ==================== PROTECT PURCHASE ==================== */
+const originalOpenPurchase = openPurchaseModal;
+openPurchaseModal = function(id){
+  if(!currentUser){
+    showToast('🔒 Please sign in to purchase.');
+    openAuth('signin');
+    return;
+  }
+  originalOpenPurchase(id);
+};
+
+/* ==================== PROTECT SELL PAGE ==================== */
+// If someone navigates to sell page without login, redirect
+const originalShowPage = showPage;
+showPage = function(page){
+  if(page === 'sell' && !currentUser){
+    showToast('🔒 Please sign in to sell.');
+    openAuth('signin');
+    return;
+  }
+  originalShowPage(page);
+};
+
+/* ==================== INIT AUTH ==================== */
+updateNavbar();
 </body>
 </html>
