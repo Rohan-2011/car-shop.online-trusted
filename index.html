@@ -17,7 +17,6 @@
   button { font-family:inherit; cursor:pointer; border:none; }
   img { display:block; max-width:100%; }
 
-  /* NAVBAR */
   .navbar { background:#fff; padding:1rem 2rem; display:flex; align-items:center; justify-content:space-between; box-shadow:0 4px 20px rgba(0,0,0,.04); position:sticky; top:0; z-index:1000; }
   .logo { display:flex; align-items:center; gap:10px; font-size:1.6rem; font-weight:800; color:var(--navy); cursor:pointer; }
   .logo i { color:var(--red); font-size:1.9rem; }
@@ -33,12 +32,10 @@
   .user-chip .avatar { width:32px; height:32px; border-radius:50%; background:var(--navy); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.8rem; }
   .user-chip span { font-weight:600; font-size:.88rem; color:var(--navy); }
 
-  /* PAGES */
   .page { display:none; }
   .page.active { display:block; animation:fadeIn .35s ease; }
   @keyframes fadeIn { from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
 
-  /* HERO */
   .hero { position:relative; min-height:560px; display:flex; align-items:center; padding:3rem 2rem; color:#fff; overflow:hidden; }
   .hero::before { content:""; position:absolute; inset:0; background:linear-gradient(120deg, rgba(11,43,92,.94) 0%, rgba(11,43,92,.65) 55%, rgba(11,43,92,.35) 100%), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=80') center/cover; z-index:-1; }
   .hero-content { max-width:1200px; margin:0 auto; width:100%; }
@@ -52,7 +49,6 @@
   .stat-number { font-size:1.9rem; font-weight:800; }
   .stat-label { font-size:.85rem; opacity:.8; text-transform:uppercase; letter-spacing:.5px; }
 
-  /* SEARCH */
   .search-section { max-width:1200px; margin:-40px auto 3rem; padding:0 2rem; position:relative; z-index:5; }
   .search-box { background:#fff; display:flex; align-items:center; padding:.6rem .6rem .6rem 1.4rem; border-radius:60px; box-shadow:0 20px 40px rgba(0,20,40,.12); gap:.8rem; flex-wrap:wrap; }
   .search-box i { color:var(--muted); }
@@ -60,26 +56,22 @@
   .search-box button { background:var(--navy); color:#fff; padding:.7rem 1.8rem; border-radius:40px; font-weight:600; transition:.2s; }
   .search-box button:hover { background:var(--red); }
 
-  /* SECTION */
   .section { max-width:1200px; margin:0 auto 4rem; padding:0 2rem; }
   .section-title { text-align:center; margin-bottom:2.5rem; }
   .section-title h2 { font-size:2rem; font-weight:800; color:var(--navy); margin-bottom:.5rem; }
   .section-title p { color:var(--muted); max-width:600px; margin:0 auto; }
   .accent { color:var(--red); }
 
-  /* BRANDS */
   .brands { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:1rem; }
   .brand-card { background:#fff; padding:1.5rem 1rem; border-radius:20px; text-align:center; box-shadow:0 8px 20px rgba(0,20,40,.05); border:1px solid var(--line); transition:.25s; }
   .brand-card:hover { transform:translateY(-4px); box-shadow:0 15px 30px rgba(11,43,92,.1); }
   .brand-card i { font-size:2.2rem; color:var(--navy); margin-bottom:.6rem; }
   .brand-card span { font-weight:600; color:#2f3b4e; font-size:.95rem; }
 
-  /* FILTERS */
   .filter-tabs { display:flex; gap:.6rem; flex-wrap:wrap; justify-content:center; margin-bottom:2rem; }
   .filter-btn { background:#fff; border:1px solid var(--line); padding:.6rem 1.4rem; border-radius:40px; font-weight:500; color:#2f3b4e; transition:.2s; }
   .filter-btn.active, .filter-btn:hover { background:var(--navy); color:#fff; border-color:var(--navy); }
 
-  /* CAR GRID */
   .car-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.8rem; }
   .car-card { background:#fff; border-radius:22px; overflow:hidden; border:1px solid var(--line); box-shadow:0 15px 30px -12px rgba(0,20,40,.08); transition:.25s; display:flex; flex-direction:column; }
   .car-card:hover { transform:translateY(-6px); box-shadow:0 25px 40px -12px rgba(11,43,92,.18); }
@@ -87,8 +79,6 @@
   .car-img img { width:100%; height:100%; object-fit:cover; transition:.4s; }
   .car-card:hover .car-img img { transform:scale(1.06); }
   .car-badge { position:absolute; top:12px; left:12px; background:var(--red); color:#fff; font-size:.7rem; font-weight:700; padding:.3rem .8rem; border-radius:30px; text-transform:uppercase; letter-spacing:.5px; }
-  .car-fav { position:absolute; top:12px; right:12px; background:rgba(255,255,255,.92); width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--muted); transition:.2s; cursor:pointer; }
-  .car-fav:hover, .car-fav.active { color:var(--red); background:#fff; }
   .car-info { padding:1.2rem; display:flex; flex-direction:column; flex:1; }
   .car-name { font-size:1.2rem; font-weight:700; color:var(--navy); margin-bottom:.2rem; }
   .car-type { font-size:.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:.6px; font-weight:600; margin-bottom:.8rem; }
@@ -102,7 +92,6 @@
   .car-actions .detail-btn { background:transparent; border:1.5px solid var(--line); color:var(--navy); padding:.7rem 1rem; border-radius:40px; font-weight:600; transition:.2s; font-size:.88rem; }
   .car-actions .detail-btn:hover { border-color:var(--navy); }
 
-  /* FEATURES */
   .features { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.5rem; }
   .feature { background:#fff; padding:2rem 1.5rem; border-radius:22px; text-align:center; border:1px solid var(--line); box-shadow:0 10px 25px rgba(0,20,40,.04); transition:.25s; }
   .feature:hover { transform:translateY(-5px); box-shadow:0 20px 35px rgba(11,43,92,.1); }
@@ -110,14 +99,12 @@
   .feature h3 { font-size:1.05rem; margin-bottom:.5rem; color:var(--navy); }
   .feature p { color:var(--muted); font-size:.9rem; }
 
-  /* STEPS */
   .steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:2rem; }
   .step { text-align:center; }
   .step-num { width:56px; height:56px; border-radius:50%; background:var(--red); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.3rem; margin:0 auto 1rem; box-shadow:0 10px 20px rgba(224,58,58,.3); }
   .step h3 { font-size:1.05rem; color:var(--navy); margin-bottom:.4rem; }
   .step p { color:var(--muted); font-size:.9rem; }
 
-  /* TESTIMONIALS */
   .testimonials { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; }
   .testimonial { background:#fff; padding:1.8rem; border-radius:22px; border:1px solid var(--line); box-shadow:0 10px 25px rgba(0,20,40,.04); }
   .testimonial .stars { color:#f5b301; margin-bottom:.8rem; }
@@ -127,7 +114,6 @@
   .testimonial h4 { font-size:.92rem; color:var(--navy); }
   .testimonial span { font-size:.78rem; color:var(--muted); }
 
-  /* NEWSLETTER */
   .newsletter { background:linear-gradient(120deg,var(--navy),#1b3f6e); border-radius:28px; padding:3rem 2rem; text-align:center; color:#fff; max-width:1200px; margin:0 auto 4rem; box-shadow:0 20px 40px rgba(11,43,92,.2); }
   .newsletter h2 { font-size:1.8rem; margin-bottom:.6rem; }
   .newsletter p { opacity:.9; margin-bottom:1.5rem; }
@@ -136,7 +122,6 @@
   .newsletter button { background:var(--red); color:#fff; padding:.9rem 1.8rem; border-radius:40px; font-weight:600; transition:.2s; }
   .newsletter button:hover { background:var(--red-dark); }
 
-  /* MODAL */
   .modal { display:none; position:fixed; inset:0; background:rgba(6,18,33,.75); backdrop-filter:blur(4px); align-items:center; justify-content:center; z-index:2000; padding:1.5rem; }
   .modal.open { display:flex; }
   .modal-content { background:#fff; max-width:480px; width:100%; border-radius:26px; padding:2rem; box-shadow:0 40px 60px rgba(0,0,0,.3); animation:modalIn .25s ease; max-height:90vh; overflow-y:auto; }
@@ -154,12 +139,10 @@
   .input-group input, .input-group textarea, .input-group select { width:100%; padding:.9rem 1.1rem; border:1.5px solid var(--line); border-radius:14px; font-family:inherit; font-size:.95rem; transition:.2s; background:#fff; color:var(--text); }
   .input-group input:focus, .input-group textarea:focus, .input-group select:focus { outline:none; border-color:var(--navy); box-shadow:0 0 0 4px rgba(11,43,92,.08); }
 
-  /* AUTH TABS */
   .auth-tabs { display:flex; gap:.5rem; background:#f5f7fc; padding:.4rem; border-radius:40px; margin-bottom:1.5rem; }
   .auth-tabs button { flex:1; padding:.6rem; border-radius:40px; font-weight:600; background:transparent; color:#2f3b4e; transition:.2s; }
   .auth-tabs button.active { background:var(--navy); color:#fff; }
 
-  /* DETAIL */
   .detail-wrap { max-width:1100px; margin:3rem auto; padding:0 2rem; display:grid; grid-template-columns:1.1fr 1fr; gap:2.5rem; }
   .detail-img { border-radius:24px; overflow:hidden; box-shadow:0 20px 40px rgba(0,20,40,.1); }
   .detail-img img { width:100%; height:420px; object-fit:cover; }
@@ -175,12 +158,10 @@
   .detail-actions .btn-primary, .detail-actions .btn-outline { padding:.9rem 1.8rem; }
   .back-btn { display:inline-flex; align-items:center; gap:.5rem; color:var(--navy); font-weight:600; margin-bottom:1.5rem; cursor:pointer; }
 
-  /* SELL FORM */
   .sell-form { background:#fff; border-radius:24px; padding:2.5rem; max-width:720px; margin:0 auto; border:1px solid var(--line); box-shadow:0 15px 30px rgba(0,20,40,.05); }
   .sell-form .row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
   @media (max-width:600px) { .sell-form .row { grid-template-columns:1fr; } }
 
-  /* FOOTER */
   .footer { background:#071d40; color:#b0c1d9; padding:3rem 2rem 1.5rem; margin-top:2rem; }
   .footer-content { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:2rem; margin-bottom:2rem; }
   .footer-col h4 { color:#fff; margin-bottom:1rem; font-size:1.05rem; }
@@ -191,11 +172,13 @@
   .footer-col .social a:hover { background:var(--red); }
   .footer-bottom { text-align:center; padding-top:1.5rem; border-top:1px solid #1f3450; font-size:.85rem; color:#8ba0bd; }
 
-  /* TOAST */
   .toast { position:fixed; bottom:30px; left:50%; transform:translateX(-50%) translateY(120px); background:var(--navy); color:#fff; padding:.9rem 2rem; border-radius:60px; font-weight:500; box-shadow:0 20px 35px rgba(0,0,0,.3); opacity:0; transition:.3s ease; z-index:3000; pointer-events:none; font-size:.92rem; max-width:90vw; text-align:center; }
   .toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
 
-  /* RESPONSIVE */
+  .loader { grid-column:1/-1; text-align:center; padding:3rem; color:var(--muted); }
+  .loader .spin { width:40px; height:40px; border:4px solid var(--line); border-top-color:var(--red); border-radius:50%; animation:spin 1s linear infinite; margin:0 auto 1rem; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
   @media (max-width:900px) { .detail-wrap { grid-template-columns:1fr; } .detail-img img { height:300px; } }
   @media (max-width:800px) {
     .nav-links { display:none; }
@@ -216,11 +199,9 @@
 </head>
 <body>
 
-<!-- ==================== NAVBAR ==================== -->
+<!-- NAVBAR -->
 <nav class="navbar">
-  <div class="logo" onclick="showPage('home')">
-    <i class="fas fa-car"></i> CarBD
-  </div>
+  <div class="logo" onclick="showPage('home')"><i class="fas fa-car"></i> CarBD</div>
   <div class="nav-links">
     <a class="nav-link active" data-page="home" onclick="showPage('home')">Home</a>
     <a class="nav-link" data-page="buy" onclick="showPage('buy')">Buy Cars</a>
@@ -231,7 +212,7 @@
   <div class="nav-actions" id="navActions"></div>
 </nav>
 
-<!-- ==================== HOME ==================== -->
+<!-- HOME -->
 <div id="page-home" class="page active">
   <section class="hero">
     <div class="hero-content">
@@ -273,7 +254,7 @@
 
   <section class="section">
     <div class="section-title"><h2>Featured <span class="accent">cars</span></h2><p>Handpicked listings with the best value for money.</p></div>
-    <div class="car-grid" id="featuredGrid"></div>
+    <div class="car-grid" id="featuredGrid"><div class="loader"><div class="spin"></div><p>Loading cars…</p></div></div>
   </section>
 
   <section class="section">
@@ -315,7 +296,7 @@
   </div>
 </div>
 
-<!-- ==================== BUY ==================== -->
+<!-- BUY -->
 <div id="page-buy" class="page">
   <section class="section" style="margin-top:2.5rem;">
     <div class="section-title"><h2>All <span class="accent">cars</span> for sale</h2><p>Browse our full inventory and filter by type or keyword.</p></div>
@@ -331,11 +312,11 @@
       <button class="filter-btn" data-type="Hatchback" onclick="setFilter('Hatchback')">Hatchback</button>
       <button class="filter-btn" data-type="Luxury" onclick="setFilter('Luxury')">Luxury</button>
     </div>
-    <div class="car-grid" id="buyGrid"></div>
+    <div class="car-grid" id="buyGrid"><div class="loader"><div class="spin"></div><p>Loading cars…</p></div></div>
   </section>
 </div>
 
-<!-- ==================== DETAIL ==================== -->
+<!-- DETAIL -->
 <div id="page-detail" class="page">
   <div style="max-width:1100px;margin:2rem auto 0;padding:0 2rem;">
     <span class="back-btn" onclick="showPage('buy')"><i class="fas fa-arrow-left"></i> Back to listings</span>
@@ -343,7 +324,7 @@
   <div class="detail-wrap" id="detailWrap"></div>
 </div>
 
-<!-- ==================== SELL ==================== -->
+<!-- SELL -->
 <div id="page-sell" class="page">
   <section class="section" style="margin-top:2.5rem;">
     <div class="section-title"><h2>Sell your <span class="accent">car</span></h2><p>List your car on CarBD and reach thousands of buyers across Bangladesh.</p></div>
@@ -375,42 +356,42 @@
           </select>
         </div>
       </div>
-      <div class="input-group"><label>Image URL (optional — or leave blank for default)</label><input type="url" id="sellImg" placeholder="https://..."></div>
+      <div class="input-group"><label>Image URL (optional)</label><input type="url" id="sellImg" placeholder="https://..."></div>
       <div class="input-group"><label>Description</label><textarea rows="4" id="sellDesc" placeholder="Describe your car…" required></textarea></div>
       <button type="submit" class="btn-primary" style="width:100%;padding:1rem;border-radius:40px;font-size:1rem;"><i class="fas fa-upload"></i> List my car</button>
     </form>
   </section>
 </div>
 
-<!-- ==================== ABOUT ==================== -->
+<!-- ABOUT -->
 <div id="page-about" class="page">
   <section class="section" style="margin-top:2.5rem;">
     <div class="section-title"><h2>About <span class="accent">CarBD</span></h2><p>Bangladesh's trusted marketplace for buying and selling cars.</p></div>
     <div class="feature" style="max-width:800px;margin:0 auto;text-align:left;padding:2rem;">
-      <p style="margin-bottom:1rem;color:#3d4c62;">CarBD was founded with one goal: make car buying and selling in Bangladesh simple, transparent, and trustworthy. Whether you're looking for a family sedan, a rugged SUV, or a luxury ride, our platform connects you with verified sellers across the country.</p>
-      <p style="margin-bottom:1rem;color:#3d4c62;">We work with over 150 trusted dealerships and thousands of private sellers to bring you the widest selection of cars — from Dhaka to Chattogram, Sylhet to Khulna.</p>
+      <p style="margin-bottom:1rem;color:#3d4c62;">CarBD was founded with one goal: make car buying and selling in Bangladesh simple, transparent, and trustworthy.</p>
+      <p style="margin-bottom:1rem;color:#3d4c62;">We work with over 150 trusted dealerships and thousands of private sellers across the country.</p>
       <p style="color:#3d4c62;">Our mission is to make every car transaction safe, fair, and hassle-free.</p>
     </div>
   </section>
 </div>
 
-<!-- ==================== CONTACT ==================== -->
+<!-- CONTACT -->
 <div id="page-contact" class="page">
   <section class="section" style="margin-top:2.5rem;">
     <div class="section-title"><h2>Contact <span class="accent">us</span></h2><p>We'd love to hear from you. Reach out any time.</p></div>
-    <form class="sell-form" onsubmit="event.preventDefault(); showToast('Message sent! We will reply soon. 📩'); this.reset();">
+    <form class="sell-form" onsubmit="event.preventDefault(); showToast('Message sent! 📩'); this.reset();">
       <div class="row">
-        <div class="input-group"><label>Your name</label><input type="text" placeholder="Full name" required></div>
-        <div class="input-group"><label>Email</label><input type="email" placeholder="you@example.com" required></div>
+        <div class="input-group"><label>Your name</label><input type="text" required></div>
+        <div class="input-group"><label>Email</label><input type="email" required></div>
       </div>
-      <div class="input-group"><label>Subject</label><input type="text" placeholder="How can we help?" required></div>
-      <div class="input-group"><label>Message</label><textarea rows="5" placeholder="Write your message..." required></textarea></div>
-      <button type="submit" class="btn-primary" style="width:100%;padding:1rem;border-radius:40px;font-size:1rem;"><i class="fas fa-paper-plane"></i> Send message</button>
+      <div class="input-group"><label>Subject</label><input type="text" required></div>
+      <div class="input-group"><label>Message</label><textarea rows="5" required></textarea></div>
+      <button type="submit" class="btn-primary" style="width:100%;padding:1rem;border-radius:40px;"><i class="fas fa-paper-plane"></i> Send message</button>
     </form>
   </section>
 </div>
 
-<!-- ==================== AUTH MODAL ==================== -->
+<!-- AUTH MODAL -->
 <div class="modal" id="authModal">
   <div class="modal-content" style="max-width:440px;">
     <div class="modal-header"><h2 id="authTitle">Sign in to CarBD</h2><button class="close-modal" onclick="closeAuth()">&times;</button></div>
@@ -419,30 +400,30 @@
       <button id="tabSignup" onclick="switchAuthTab('signup')">Sign Up</button>
     </div>
     <form id="signinForm" onsubmit="handleSignin(event)">
-      <div class="input-group"><label>Email</label><input type="text" id="signinEmail" placeholder="you@example.com" required></div>
+      <div class="input-group"><label>Email</label><input type="email" id="signinEmail" placeholder="you@example.com" required></div>
       <div class="input-group"><label>Password</label><input type="password" id="signinPass" required></div>
       <button type="submit" class="btn-primary" style="width:100%;padding:1rem;border-radius:40px;"><i class="fas fa-sign-in-alt"></i> Sign In</button>
     </form>
     <form id="signupForm" onsubmit="handleSignup(event)" style="display:none;">
       <div class="input-group"><label>Full name</label><input type="text" id="signupName" placeholder="Your name" required></div>
-      <div class="input-group"><label>Email</label><input type="text" id="signupEmail" placeholder="you@example.com" required></div>
-      <div class="input-group"><label>Password</label><input type="password" id="signupPass" required></div>
-      <div class="input-group"><label>Phone</label><input type="text" id="signupPhone" placeholder="+880 17XX XXXXXX" required></div>
+      <div class="input-group"><label>Email</label><input type="email" id="signupEmail" placeholder="you@example.com" required></div>
+      <div class="input-group"><label>Password (min 6 chars)</label><input type="password" id="signupPass" minlength="6" required></div>
+      <div class="input-group"><label>Phone</label><input type="tel" id="signupPhone" placeholder="+880 17XX XXXXXX" required></div>
       <button type="submit" class="btn-primary" style="width:100%;padding:1rem;border-radius:40px;"><i class="fas fa-user-plus"></i> Create Account</button>
     </form>
-    <p style="text-align:center;margin-top:1rem;font-size:.85rem;color:#62748c;">Accounts are saved in this browser.</p>
+    <p style="text-align:center;margin-top:1rem;font-size:.85rem;color:#62748c;">Real account · stored securely in Firebase</p>
   </div>
 </div>
 
-<!-- ==================== PURCHASE MODAL ==================== -->
+<!-- PURCHASE MODAL -->
 <div class="modal" id="purchaseModal">
   <div class="modal-content">
     <div class="modal-header"><h2>Complete purchase</h2><button class="close-modal" onclick="closeModal()">&times;</button></div>
     <div class="modal-car-detail" id="modalCarDetail"></div>
     <form onsubmit="handlePurchase(event)">
       <div class="input-group"><label>Full name</label><input type="text" id="buyName" placeholder="Your name" required></div>
-      <div class="input-group"><label>Phone number</label><input type="text" id="buyPhone" placeholder="+880 17XX XXXXXX" required></div>
-      <div class="input-group"><label>Email</label><input type="text" id="buyEmail" placeholder="you@example.com" required></div>
+      <div class="input-group"><label>Phone number</label><input type="tel" id="buyPhone" placeholder="+880 17XX XXXXXX" required></div>
+      <div class="input-group"><label>Email</label><input type="email" id="buyEmail" placeholder="you@example.com" required></div>
       <div class="input-group"><label>Delivery address</label><input type="text" id="buyAddress" placeholder="House, road, area" required></div>
       <div class="input-group"><label>Payment method</label>
         <select id="buyPayment" required>
@@ -454,10 +435,10 @@
   </div>
 </div>
 
-<!-- ==================== TOAST ==================== -->
+<!-- TOAST -->
 <div class="toast" id="toast">✅ Done!</div>
 
-<!-- ==================== FOOTER ==================== -->
+<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-content">
     <div class="footer-col"><h4>CarBD</h4>
@@ -483,40 +464,110 @@
       </div>
     </div>
   </div>
-  <div class="footer-bottom">© 2025 CarBD — All rights reserved. Made with ❤️ in Bangladesh.</div>
+  <div class="footer-bottom">© 2025 CarBD — All rights reserved. Powered by Firebase.</div>
 </footer>
 
-<script>
-/* ==================== CAR DATA ==================== */
-const cars = [
-  { id:1, name:"Toyota Corolla", type:"Sedan", price:3200000, year:2020, mileage:"45,000 km", fuel:"Petrol", location:"Dhaka", badge:"Featured", img:"https://images.unsplash.com/photo-1590362891991-f776e747a588?auto=format&fit=crop&w=800&q=80", desc:"Well maintained Toyota Corolla, single owner, full servicing history. Perfect family sedan." },
-  { id:2, name:"Honda CR-V", type:"SUV", price:5200000, year:2021, mileage:"28,000 km", fuel:"Petrol", location:"Dhaka", badge:"Low mileage", img:"https://images.unsplash.com/photo-1568844293986-8d0400bd4745?auto=format&fit=crop&w=800&q=80", desc:"Spacious Honda CR-V, accident-free, all original parts. Ideal for family road trips." },
-  { id:3, name:"Mitsubishi Pajero", type:"SUV", price:6500000, year:2019, mileage:"60,000 km", fuel:"Diesel", location:"Chattogram", badge:"", img:"https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80", desc:"Powerful Pajero Sport, 4WD, excellent for off-road and highway driving." },
-  { id:4, name:"Toyota Aqua", type:"Hatchback", price:2350000, year:2018, mileage:"52,000 km", fuel:"Hybrid", location:"Dhaka", badge:"Hybrid", img:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80", desc:"Fuel-efficient Toyota Aqua hybrid. Perfect city car with great mileage." },
-  { id:5, name:"BMW 5 Series", type:"Luxury", price:12500000, year:2022, mileage:"12,000 km", fuel:"Petrol", location:"Dhaka", badge:"Luxury", img:"https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80", desc:"Stunning BMW 530i in showroom condition. Fully loaded with premium features." },
-  { id:6, name:"Nissan X-Trail", type:"SUV", price:4200000, year:2020, mileage:"38,000 km", fuel:"Petrol", location:"Sylhet", badge:"", img:"https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80", desc:"Reliable Nissan X-Trail, 7-seater, well maintained, no accidents." },
-  { id:7, name:"Hyundai Creta", type:"SUV", price:3600000, year:2022, mileage:"15,000 km", fuel:"Petrol", location:"Dhaka", badge:"New arrival", img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80", desc:"Nearly new Hyundai Creta with warranty remaining. Loaded with modern features." },
-  { id:8, name:"Toyota Premio", type:"Sedan", price:2800000, year:2019, mileage:"42,000 km", fuel:"Petrol", location:"Khulna", badge:"", img:"https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80", desc:"Classic Toyota Premio, well kept, original paint, first owner." },
-  { id:9, name:"Mercedes C-Class", type:"Luxury", price:9800000, year:2021, mileage:"22,000 km", fuel:"Petrol", location:"Dhaka", badge:"Premium", img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&w=800&q=80", desc:"Elegant Mercedes C200, AMG trim, panoramic roof, fully serviced." },
-  { id:10, name:"Suzuki Swift", type:"Hatchback", price:1850000, year:2020, mileage:"35,000 km", fuel:"Petrol", location:"Rajshahi", badge:"Budget", img:"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80", desc:"Compact Suzuki Swift, great for city driving, low fuel consumption." }
+<!-- FIREBASE SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {
+  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+  signOut, onAuthStateChanged, updateProfile
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import {
+  getFirestore, collection, addDoc, getDocs, doc, getDoc,
+  query, orderBy, serverTimestamp, setDoc
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+/* ==================== FIREBASE CONFIG ==================== */
+/* ⚠️ REPLACE THE VALUES BELOW WITH YOUR OWN FROM FIREBASE CONSOLE */
+const firebaseConfig = {
+  apiKey: "PASTE_YOUR_API_KEY",
+  authDomain: "PASTE_YOUR_PROJECT.firebaseapp.com",
+  projectId: "PASTE_YOUR_PROJECT_ID",
+  storageBucket: "PASTE_YOUR_PROJECT.appspot.com",
+  messagingSenderId: "PASTE_YOUR_SENDER_ID",
+  appId: "PASTE_YOUR_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+/* ==================== SAMPLE CARS (only loaded once) ==================== */
+const SAMPLE_CARS = [
+  { name:"Toyota Corolla", type:"Sedan", price:3200000, year:2020, mileage:"45,000 km", fuel:"Petrol", location:"Dhaka", badge:"Featured", img:"https://images.unsplash.com/photo-1590362891991-f776e747a588?auto=format&fit=crop&w=800&q=80", desc:"Well maintained Toyota Corolla, single owner, full servicing history." },
+  { name:"Honda CR-V", type:"SUV", price:5200000, year:2021, mileage:"28,000 km", fuel:"Petrol", location:"Dhaka", badge:"Low mileage", img:"https://images.unsplash.com/photo-1568844293986-8d0400bd4745?auto=format&fit=crop&w=800&q=80", desc:"Spacious Honda CR-V, accident-free, all original parts." },
+  { name:"Mitsubishi Pajero", type:"SUV", price:6500000, year:2019, mileage:"60,000 km", fuel:"Diesel", location:"Chattogram", badge:"", img:"https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80", desc:"Powerful Pajero Sport, 4WD, excellent for off-road." },
+  { name:"Toyota Aqua", type:"Hatchback", price:2350000, year:2018, mileage:"52,000 km", fuel:"Hybrid", location:"Dhaka", badge:"Hybrid", img:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80", desc:"Fuel-efficient Toyota Aqua hybrid. Perfect city car." },
+  { name:"BMW 5 Series", type:"Luxury", price:12500000, year:2022, mileage:"12,000 km", fuel:"Petrol", location:"Dhaka", badge:"Luxury", img:"https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80", desc:"Stunning BMW 530i in showroom condition." },
+  { name:"Nissan X-Trail", type:"SUV", price:4200000, year:2020, mileage:"38,000 km", fuel:"Petrol", location:"Sylhet", badge:"", img:"https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80", desc:"Reliable Nissan X-Trail, 7-seater, no accidents." },
+  { name:"Hyundai Creta", type:"SUV", price:3600000, year:2022, mileage:"15,000 km", fuel:"Petrol", location:"Dhaka", badge:"New arrival", img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80", desc:"Nearly new Hyundai Creta with warranty." },
+  { name:"Toyota Premio", type:"Sedan", price:2800000, year:2019, mileage:"42,000 km", fuel:"Petrol", location:"Khulna", badge:"", img:"https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80", desc:"Classic Toyota Premio, well kept, original paint." },
+  { name:"Mercedes C-Class", type:"Luxury", price:9800000, year:2021, mileage:"22,000 km", fuel:"Petrol", location:"Dhaka", badge:"Premium", img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&w=800&q=80", desc:"Elegant Mercedes C200, AMG trim, panoramic roof." },
+  { name:"Suzuki Swift", type:"Hatchback", price:1850000, year:2020, mileage:"35,000 km", fuel:"Petrol", location:"Rajshahi", badge:"Budget", img:"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80", desc:"Compact Suzuki Swift, great for city driving." }
 ];
 
 /* ==================== STATE ==================== */
-let currentUser = JSON.parse(localStorage.getItem('carbd_user') || 'null');
-let wishlist = JSON.parse(localStorage.getItem('carbd_wishlist') || '[]');
+let allCars = [];
+let currentUser = null;
+let currentUserProfile = null;
 let currentFilter = 'all';
 let buySearchTerm = '';
 let selectedCar = null;
 
 /* ==================== HELPERS ==================== */
 function formatPrice(p) { return '৳ ' + Number(p).toLocaleString('en-IN'); }
-
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
   clearTimeout(t._timer);
   t._timer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+/* ==================== SEED DB (only if empty) ==================== */
+async function seedCarsIfEmpty() {
+  try {
+    const snap = await getDocs(collection(db, 'cars'));
+    if (snap.empty) {
+      console.log('Seeding database with sample cars…');
+      for (const c of SAMPLE_CARS) {
+        await addDoc(collection(db, 'cars'), { ...c, createdAt: serverTimestamp() });
+      }
+    }
+  } catch (err) {
+    console.error('Seed error:', err);
+  }
+}
+
+/* ==================== LOAD CARS ==================== */
+async function loadCars() {
+  try {
+    const q = query(collection(db, 'cars'), orderBy('createdAt', 'desc'));
+    const snap = await getDocs(q);
+    allCars = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  } catch (err) {
+    // fallback: unordered load
+    const snap = await getDocs(collection(db, 'cars'));
+    allCars = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  }
+  renderFeatured();
+  renderBuyGrid();
+}
+
+/* ==================== NAV ==================== */
+function showPage(page) {
+  if (page === 'sell' && !currentUser) {
+    showToast('🔒 Please sign in to sell.');
+    openAuth('signin');
+    return;
+  }
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const t = document.getElementById('page-' + page);
+  if (t) t.classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.toggle('active', l.dataset.page === page));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 /* ==================== AUTH ==================== */
@@ -546,56 +597,62 @@ function switchAuthTab(mode) {
   }
 }
 
-function handleSignup(e) {
+async function handleSignup(e) {
   e.preventDefault();
-  const user = {
-    name: document.getElementById('signupName').value.trim() || 'Friend',
-    email: document.getElementById('signupEmail').value.trim().toLowerCase(),
-    phone: document.getElementById('signupPhone').value.trim()
-  };
-  const users = JSON.parse(localStorage.getItem('carbd_users') || '[]');
-  users.push(user);
-  localStorage.setItem('carbd_users', JSON.stringify(users));
-  currentUser = user;
-  localStorage.setItem('carbd_user', JSON.stringify(currentUser));
-  updateNavbar();
-  closeAuth();
-  showToast('🎉 Welcome, ' + user.name + '!');
-  e.target.reset();
+  const name = document.getElementById('signupName').value.trim();
+  const email = document.getElementById('signupEmail').value.trim().toLowerCase();
+  const pass = document.getElementById('signupPass').value;
+  const phone = document.getElementById('signupPhone').value.trim();
+  try {
+    const cred = await createUserWithEmailAndPassword(auth, email, pass);
+    await updateProfile(cred.user, { displayName: name });
+    await setDoc(doc(db, 'users', cred.user.uid), {
+      name, email, phone, createdAt: serverTimestamp()
+    });
+    showToast('🎉 Welcome, ' + name + '!');
+    closeAuth();
+    e.target.reset();
+  } catch (err) {
+    console.error(err);
+    let msg = err.message;
+    if (err.code === 'auth/email-already-in-use') msg = 'This email is already registered. Try signing in.';
+    if (err.code === 'auth/weak-password') msg = 'Password must be at least 6 characters.';
+    if (err.code === 'auth/invalid-email') msg = 'Please enter a valid email.';
+    showToast('❌ ' + msg);
+  }
 }
 
-function handleSignin(e) {
+async function handleSignin(e) {
   e.preventDefault();
   const email = document.getElementById('signinEmail').value.trim().toLowerCase();
   const pass = document.getElementById('signinPass').value;
-  if (!email && !pass) { showToast('⚠️ Please enter something'); return; }
-  const users = JSON.parse(localStorage.getItem('carbd_users') || '[]');
-  let user = users.find(u => u.email === email);
-  if (!user) {
-    user = { name: email.split('@')[0] || 'Guest', email, phone: '' };
-    users.push(user);
-    localStorage.setItem('carbd_users', JSON.stringify(users));
+  try {
+    await signInWithEmailAndPassword(auth, email, pass);
+    showToast('👋 Welcome back!');
+    closeAuth();
+    e.target.reset();
+  } catch (err) {
+    console.error(err);
+    let msg = err.message;
+    if (err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
+      msg = 'Wrong email or password.';
+    }
+    showToast('❌ ' + msg);
   }
-  currentUser = user;
-  localStorage.setItem('carbd_user', JSON.stringify(currentUser));
-  updateNavbar();
-  closeAuth();
-  showToast('👋 Welcome back, ' + user.name + '!');
-  e.target.reset();
 }
 
-function signout() {
-  currentUser = null;
-  localStorage.removeItem('carbd_user');
-  updateNavbar();
-  showToast('👋 Signed out.');
+async function signout() {
+  try {
+    await signOut(auth);
+    showToast('👋 Signed out.');
+  } catch (err) { showToast('❌ ' + err.message); }
 }
 
-function updateNavbar() {
+async function updateNavbar() {
   const nav = document.getElementById('navActions');
   if (!nav) return;
   if (currentUser) {
-    const name = currentUser.name || 'User';
+    const name = currentUserProfile?.name || currentUser.displayName || currentUser.email.split('@')[0];
     const initials = name.split(' ').map(n => n[0]).join('').slice(0,2).toUpperCase();
     nav.innerHTML = `
       <div class="user-chip">
@@ -611,36 +668,18 @@ function updateNavbar() {
   }
 }
 
-/* ==================== NAV ==================== */
-function showPage(page) {
-  if (page === 'sell' && !currentUser) {
-    showToast('🔒 Please sign in to sell.');
-    openAuth('signin');
-    return;
-  }
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  const t = document.getElementById('page-' + page);
-  if (t) t.classList.add('active');
-  document.querySelectorAll('.nav-link').forEach(l => l.classList.toggle('active', l.dataset.page === page));
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
 /* ==================== CAR CARD ==================== */
 function carCardHTML(car) {
   const safeName = encodeURIComponent(car.name);
-  const isFav = wishlist.includes(car.id);
   return `
     <div class="car-card">
       <div class="car-img">
-        <img src="${car.img}" alt="${car.name}" onerror="this.src='https://via.placeholder.com/400x250/0b2b5c/ffffff?text=${safeName}'">
+        <img src="${car.img || 'https://via.placeholder.com/400x250/0b2b5c/ffffff?text=' + safeName}" alt="${car.name}" onerror="this.src='https://via.placeholder.com/400x250/0b2b5c/ffffff?text=${safeName}'">
         ${car.badge ? `<span class="car-badge">${car.badge}</span>` : ''}
-        <span class="car-fav ${isFav ? 'active' : ''}" onclick="toggleWishlist(${car.id}, this)">
-          <i class="${isFav ? 'fas' : 'far'} fa-heart"></i>
-        </span>
       </div>
       <div class="car-info">
         <h3 class="car-name">${car.name}</h3>
-        <div class="car-type">${car.type} · ${car.location}</div>
+        <div class="car-type">${car.type} · ${car.location || 'Bangladesh'}</div>
         <div class="car-specs">
           <span><i class="fas fa-calendar-alt"></i>${car.year}</span>
           <span><i class="fas fa-tachometer-alt"></i>${car.mileage}</span>
@@ -648,36 +687,27 @@ function carCardHTML(car) {
         </div>
         <div class="car-price">${formatPrice(car.price)} <small>BDT</small></div>
         <div class="car-actions">
-          <button class="buy-btn" onclick="openPurchaseModal(${car.id})"><i class="fas fa-shopping-cart"></i> Purchase</button>
-          <button class="detail-btn" onclick="showDetail(${car.id})">Details</button>
+          <button class="buy-btn" onclick="openPurchaseModal('${car.id}')"><i class="fas fa-shopping-cart"></i> Purchase</button>
+          <button class="detail-btn" onclick="showDetail('${car.id}')">Details</button>
         </div>
       </div>
     </div>`;
 }
 
-/* ==================== WISHLIST ==================== */
-function toggleWishlist(id, el) {
-  if (!currentUser) { showToast('🔒 Sign in to save favorites'); openAuth('signin'); return; }
-  const i = wishlist.indexOf(id);
-  if (i >= 0) { wishlist.splice(i, 1); showToast('Removed from favorites'); }
-  else { wishlist.push(id); showToast('Added to favorites ❤️'); }
-  localStorage.setItem('carbd_wishlist', JSON.stringify(wishlist));
-  el.classList.toggle('active');
-  el.querySelector('i').className = el.classList.contains('active') ? 'fas fa-heart' : 'far fa-heart';
+function renderFeatured() {
+  const grid = document.getElementById('featuredGrid');
+  if (allCars.length === 0) { grid.innerHTML = '<div class="loader"><p>No cars yet.</p></div>'; return; }
+  grid.innerHTML = allCars.slice(0,6).map(carCardHTML).join('');
 }
 
-/* ==================== RENDER ==================== */
-function renderFeatured() {
-  document.getElementById('featuredGrid').innerHTML = cars.slice(0,6).map(carCardHTML).join('');
-}
 function renderBuyGrid() {
-  const list = cars.filter(c => {
+  const grid = document.getElementById('buyGrid');
+  const list = allCars.filter(c => {
     const typeOk = currentFilter === 'all' || c.type === currentFilter;
     const q = buySearchTerm.toLowerCase();
-    const searchOk = !q || c.name.toLowerCase().includes(q) || c.type.toLowerCase().includes(q) || c.location.toLowerCase().includes(q);
+    const searchOk = !q || c.name.toLowerCase().includes(q) || c.type.toLowerCase().includes(q) || (c.location||'').toLowerCase().includes(q);
     return typeOk && searchOk;
   });
-  const grid = document.getElementById('buyGrid');
   if (list.length === 0) {
     grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3rem;background:#fff;border-radius:24px;color:#62748c;">
       <i class="fas fa-car-crash" style="font-size:2.5rem;margin-bottom:1rem;color:#e03a3a;"></i>
@@ -687,7 +717,6 @@ function renderBuyGrid() {
   grid.innerHTML = list.map(carCardHTML).join('');
 }
 
-/* ==================== FILTERS ==================== */
 function setFilter(type) {
   currentFilter = type;
   document.querySelectorAll('#filterTabs .filter-btn').forEach(b => b.classList.toggle('active', b.dataset.type === type));
@@ -708,16 +737,14 @@ function goSearch() {
 
 /* ==================== DETAIL ==================== */
 function showDetail(id) {
-  const car = cars.find(c => c.id === id);
+  const car = allCars.find(c => c.id === id);
   if (!car) return;
   const safeName = encodeURIComponent(car.name);
   document.getElementById('detailWrap').innerHTML = `
-    <div class="detail-img">
-      <img src="${car.img}" alt="${car.name}" onerror="this.src='https://via.placeholder.com/600x420/0b2b5c/ffffff?text=${safeName}'">
-    </div>
+    <div class="detail-img"><img src="${car.img||'https://via.placeholder.com/600x420/0b2b5c/ffffff?text='+safeName}" alt="${car.name}" onerror="this.src='https://via.placeholder.com/600x420/0b2b5c/ffffff?text=${safeName}'"></div>
     <div class="detail-info">
       <h1>${car.name}</h1>
-      <span class="type-tag">${car.type} · ${car.location}</span>
+      <span class="type-tag">${car.type} · ${car.location || 'Bangladesh'}</span>
       <div class="price-tag">${formatPrice(car.price)} <small style="font-size:1rem;color:#62748c;">BDT</small></div>
       <div class="detail-specs">
         <div class="spec"><strong>Year</strong><i class="fas fa-calendar-alt"></i> ${car.year}</div>
@@ -725,9 +752,9 @@ function showDetail(id) {
         <div class="spec"><strong>Fuel</strong><i class="fas fa-gas-pump"></i> ${car.fuel}</div>
         <div class="spec"><strong>Type</strong><i class="fas fa-car"></i> ${car.type}</div>
       </div>
-      <p class="detail-desc">${car.desc}</p>
+      <p class="detail-desc">${car.desc || 'No description provided.'}</p>
       <div class="detail-actions">
-        <button class="btn-primary" onclick="openPurchaseModal(${car.id})"><i class="fas fa-shopping-cart"></i> Purchase now</button>
+        <button class="btn-primary" onclick="openPurchaseModal('${car.id}')"><i class="fas fa-shopping-cart"></i> Purchase now</button>
         <button class="btn-outline" onclick="showToast('Seller contact: +880 1700-000000 📞')"><i class="fas fa-phone"></i> Contact seller</button>
       </div>
     </div>`;
@@ -737,10 +764,10 @@ function showDetail(id) {
 /* ==================== PURCHASE ==================== */
 function openPurchaseModal(id) {
   if (!currentUser) { showToast('🔒 Please sign in to purchase.'); openAuth('signin'); return; }
-  selectedCar = cars.find(c => c.id === id);
+  selectedCar = allCars.find(c => c.id === id);
   if (!selectedCar) return;
   document.getElementById('modalCarDetail').innerHTML = `
-    <img src="${selectedCar.img}" alt="${selectedCar.name}" onerror="this.src='https://via.placeholder.com/200x150/0b2b5c/ffffff?text=Car'">
+    <img src="${selectedCar.img}" onerror="this.src='https://via.placeholder.com/200x150/0b2b5c/ffffff?text=Car'">
     <div><h4>${selectedCar.name} (${selectedCar.year})</h4><div class="price">${formatPrice(selectedCar.price)} BDT</div></div>`;
   document.getElementById('purchaseModal').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -749,21 +776,43 @@ function closeModal() {
   document.getElementById('purchaseModal').classList.remove('open');
   document.body.style.overflow = '';
 }
-function handlePurchase(e) {
+
+async function handlePurchase(e) {
   e.preventDefault();
+  if (!selectedCar || !currentUser) return;
   const orderRef = 'CBD-' + new Date().getFullYear() + '-' + String(Date.now()).slice(-6);
-  closeModal();
-  showToast('✅ Purchase confirmed! Ref: ' + orderRef);
-  e.target.reset();
-  selectedCar = null;
+  try {
+    await addDoc(collection(db, 'orders'), {
+      orderRef,
+      userId: currentUser.uid,
+      userEmail: currentUser.email,
+      carId: selectedCar.id,
+      carName: selectedCar.name,
+      carPrice: selectedCar.price,
+      buyerName: document.getElementById('buyName').value,
+      buyerPhone: document.getElementById('buyPhone').value,
+      buyerEmail: document.getElementById('buyEmail').value,
+      buyerAddress: document.getElementById('buyAddress').value,
+      paymentMethod: document.getElementById('buyPayment').value,
+      status: 'pending',
+      createdAt: serverTimestamp()
+    });
+    closeModal();
+    showToast('✅ Purchase confirmed! Ref: ' + orderRef);
+    e.target.reset();
+    selectedCar = null;
+  } catch (err) {
+    console.error(err);
+    showToast('❌ Failed to save order: ' + err.message);
+  }
 }
 
 /* ==================== SELL ==================== */
-function handleSell(e) {
+async function handleSell(e) {
   e.preventDefault();
+  if (!currentUser) { showToast('🔒 Please sign in.'); openAuth('signin'); return; }
   const newCar = {
-    id: cars.length + 1,
-    name: document.getElementById('sellName').value + ' ' + document.getElementById('sellBrand').value,
+    name: document.getElementById('sellName').value + ' · ' + document.getElementById('sellBrand').value,
     type: document.getElementById('sellType').value,
     price: Number(document.getElementById('sellPrice').value),
     year: Number(document.getElementById('sellYear').value),
@@ -772,17 +821,24 @@ function handleSell(e) {
     location: document.getElementById('sellLocation').value,
     badge: 'New',
     img: document.getElementById('sellImg').value || 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80',
-    desc: document.getElementById('sellDesc').value
+    desc: document.getElementById('sellDesc').value,
+    sellerId: currentUser.uid,
+    sellerEmail: currentUser.email,
+    createdAt: serverTimestamp()
   };
-  cars.unshift(newCar);
-  showToast('✅ Car listed successfully!');
-  e.target.reset();
-  renderFeatured();
-  renderBuyGrid();
-  showPage('buy');
+  try {
+    await addDoc(collection(db, 'cars'), newCar);
+    showToast('✅ Car listed successfully!');
+    e.target.reset();
+    await loadCars();
+    showPage('buy');
+  } catch (err) {
+    console.error(err);
+    showToast('❌ Failed to list car: ' + err.message);
+  }
 }
 
-/* ==================== MISC ==================== */
+/* ==================== INIT ==================== */
 function animateStat() {
   const el = document.getElementById('statCars');
   let n = 0; const target = 2500; const step = target / 40;
@@ -793,17 +849,48 @@ function animateStat() {
   }, 30);
 }
 
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    currentUser = user;
+    try {
+      const snap = await getDoc(doc(db, 'users', user.uid));
+      currentUserProfile = snap.exists() ? snap.data() : null;
+    } catch (_) { currentUserProfile = null; }
+  } else {
+    currentUser = null;
+    currentUserProfile = null;
+  }
+  updateNavbar();
+});
+
 window.addEventListener('click', e => {
   if (e.target.id === 'purchaseModal') closeModal();
   if (e.target.id === 'authModal') closeAuth();
 });
 
-/* ==================== INIT ==================== */
-renderFeatured();
-renderBuyGrid();
-updateNavbar();
-animateStat();
-</script>
+/* ==================== EXPOSE TO WINDOW ==================== */
+window.showPage = showPage;
+window.openAuth = openAuth;
+window.closeAuth = closeAuth;
+window.switchAuthTab = switchAuthTab;
+window.handleSignin = handleSignin;
+window.handleSignup = handleSignup;
+window.signout = signout;
+window.setFilter = setFilter;
+window.applyBuyFilters = applyBuyFilters;
+window.goSearch = goSearch;
+window.showDetail = showDetail;
+window.openPurchaseModal = openPurchaseModal;
+window.closeModal = closeModal;
+window.handlePurchase = handlePurchase;
+window.handleSell = handleSell;
+window.showToast = showToast;
 
+(async function init() {
+  await seedCarsIfEmpty();
+  await loadCars();
+  animateStat();
+})();
+</script>
 </body>
 </html>
