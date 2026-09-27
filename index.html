@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CarBD · Buy & Sell Cars in Bangladesh</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+  :root{
+    --navy:#0b2b5c; --navy-dark:#071d40; --red:#e03a3a; --red-dark:#b82b2b;
+    --bg:#f5f7fc; --text:#141c2c; --muted:#62748c; --line:#e6eaf0;
+  }
+  body{background:var(--bg);color:var(--text);line-height:1.55;}
+  a{text-decoration:none;color:inherit;}
+  button{font-family:inherit;cursor:pointer;border:none;}
+  img{display:block;max-width:100%;}
+
+  /* NAVBAR */
+  .navbar{
+    background:#fff;padding:1rem 2rem;display:flex;align-items:center;
+    justify-content:space-between;box-shadow:0 4px 20px rgba(0,0,0,.04);
+    position:sticky;top:0;z-index:1000;
+  }
+  .logo{display:flex;align-items:center;gap:10px;font-size:1.6rem;font-weight:800;color:var(--navy);}
+  .logo i{color:var(--red);font-size:1.9rem;}
+  .nav-links{display:flex;gap:1.8rem;font-weight:500;}
+  .nav-links a{color:#2f3b4e;transition:.2s;padding:.3rem 0;border-bottom:2px solid transparent;font-size:.95rem;}
+  .nav-links a:hover,.nav-links a.active{color:var(--red);border-color:var(--red);}
+  .nav-actions{display:flex;gap:.8rem;}
+  .btn-outline{
+    background:transparent;border:1.5px solid var(--navy);padding:.55rem 1.2rem;
+    border-radius:40px;font-weight:600;color:var(--navy);transition:.2s;font-size:.9rem;
+  }
+  .btn-outline:hover{background:var(--navy);color:#fff;}
+  .btn-primary{
+    background:var(--red);color:#fff;padding:.6rem 1.4rem;border-radius:40px;
+    font-weight:600;box-shadow:0 8px 16px rgba(224,58,58,.25);transition:.2s;font-size:.9rem;
+  }
+  .btn-primary:hover{background:var(--red-dark);transform:translateY(-2px);}
+
+  /* PAGES */
+  .page{display:none;}
+  .page.active{display:block;animation:fadeIn .35s ease;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+  /* HERO */
+  .hero{
+    position:relative;min-height:560px;display:flex;align-items:center;
+    padding:3rem 2rem;color:#fff;overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(120deg,rgba(11,43,92,.94) 0%,rgba(11,43,92,.65) 55%,rgba(11,43,92,.35) 100%),
+      url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=80') center/cover;
+    z-index:-1;
+  }
+  .hero-content{max-width:1200px;margin:0 auto;width:100%;}
+  .hero h1{font-size:3rem;font-weight:800;line-height:1.15;margin-bottom:1rem;max-width:640px;}
+  .hero p{font-size:1.15rem;opacity:.92;margin-bottom:2rem;max-width:560px;}
+  .hero-buttons{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;}
+  .hero-buttons .btn-outline{border-color:#fff;color:#fff;}
+  .hero-buttons .btn-outline:hover{background:#fff;color:var(--navy);}
+  .hero-stats{display:flex;gap:2.5rem;flex-wrap:wrap;}
+  .stat-item{display:flex;flex-direction:column;}
+  .stat-number{font-size:1.9rem;font-weight:800;}
+  .stat-label{font-size:.85rem;opacity:.8;text-transform:uppercase;letter-spacing:.5px;}
+
+  /* SEARCH */
+  .search-section{max-width:1200px;margin:-40px auto 3rem;padding:0 2rem;position:relative;z-index:5;}
+  .search-box{
+    background:#fff;display:flex;align-items:center;padding:.6rem .6rem .6rem 1.4rem;
+    border-radius:60px;box-shadow:0 20px 40px rgba(0,20,40,.12);gap:.8rem;flex-wrap:wrap;
+  }
+  .search-box i{color:var(--muted);}
+  .search-box input{flex:1;border:none;outline:none;padding:.7rem 0;font-size:1rem;min-width:180px;background:transparent;}
+  .search-box button{background:var(--navy);color:#fff;padding:.7rem 1.8rem;border-radius:40px;font-weight:600;transition:.2s;}
+  .search-box button:hover{background:var(--red);}
+
+  /* SECTIONS */
+  .section{max-width:1200px;margin:0 auto 4rem;padding:0 2rem;}
+  .section-title{text-align:center;margin-bottom:2.5rem;}
+  .section-title h2{font-size:2rem;font-weight:800;color:var(--navy);margin-bottom:.5rem;}
+  .section-title p{color:var(--muted);max-width:600px;margin:0 auto;}
+  .accent{color:var(--red);}
+
+  /* BRANDS */
+  .brands{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;}
+  .brand-card{
+    background:#fff;padding:1.5rem 1rem;border-radius:20px;text-align:center;
+    box-shadow:0 8px 20px rgba(0,20,40,.05);border:1px solid var(--line);transition:.25s;
+  }
+  .brand-card:hover{transform:translateY(-4px);box-shadow:0 15px 30px rgba(11,43,92,.1);}
+  .brand-card i{font-size:2.2rem;color:var(--navy);margin-bottom:.6rem;}
+  .brand-card span{font-weight:600;color:#2f3b4e;font-size:.95rem;}
+
+  /* FILTERS */
+  .filter-tabs{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;margin-bottom:2rem;}
+  .filter-btn{
+    background:#fff;border:1px solid var(--line);padding:.6rem 1.4rem;border-radius:40px;
+    font-weight:500;color:#2f3b4e;transition:.2s;
+  }
+  .filter-btn.active,.filter-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
+
+  /* CAR GRID */
+  .car-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.8rem;}
+  .car-card{
+    background:#fff;border-radius:22px;overflow:hidden;border:1px solid var(--line);
+    box-shadow:0 15px 30px -12px rgba(0,20,40,.08);transition:.25s;display:flex;flex-direction:column;
+  }
+  .car-card:hover{transform:translateY(-6px);box-shadow:0 25px 40px -12px rgba(11,43,92,.18);}
+  .car-img{position:relative;height:190px;overflow:hidden;background:#eef2f6;}
+  .car-img img{width:100%;height:100%;object-fit:cover;transition:.4s;}
+  .car-card:hover .car-img img{transform:scale(1.06);}
+  .car-badge{
+    position:absolute;top:12px;left:12px;background:var(--red);color:#fff;
+    font-size:.7rem;font-weight:700;padding:.3rem .8rem;border-radius:30px;
+    text-transform:uppercase;letter-spacing:.5px;
+  }
+  .car-fav{
+    position:absolute;top:12px;right:12px;background:rgba(255,255,255,.92);
+    width:34px;height:34px;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;color:var(--muted);transition:.2s;
+  }
+  .car-fav:hover{color:var(--red);background:#fff;}
+  .car-info{padding:1.2rem;display:flex;flex-direction:column;flex:1;}
+  .car-name{font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:.2rem;}
+  .car-type{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;font-weight:600;margin-bottom:.8rem;}
+  .car-specs{display:flex;gap:.8rem;font-size:.82rem;color:#4a5f7a;margin-bottom:1rem;flex-wrap:wrap;}
+  .car-specs i{color:var(--red);margin-right:3px;}
+  .car-price{font-size:1.4rem;font-weight:800;color:var(--text);margin-bottom:1rem;}
+  .car-price small{font-size:.78rem;font-weight:500;color:var(--muted);}
+  .car-actions{display:flex;gap:.5rem;margin-top:auto;}
+  .car-actions .buy-btn{
+    flex:1;background:var(--navy);color:#fff;padding:.7rem;border-radius:40px;
+    font-weight:600;display:flex;align-items:center;justify-content:center;
+    gap:6px;transition:.2s;font-size:.88rem;
+  }
+  .car-actions .buy-btn:hover{background:var(--red);}
+  .car-actions .detail-btn{
+    background:transparent;border:1.5px solid var(--line);color:var(--navy);
+    padding:.7rem 1rem;border-radius:40px;font-weight:600;transition:.2s;font-size:.88rem;
+  }
+  .car-actions .detail-btn:hover{border-color:var(--navy);}
+
+  /* FEATURES */
+  .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;}
+  .feature{
+    background:#fff;padding:2rem 1.5rem;border-radius:22px;text-align:center;
+    border:1px solid var(--line);box-shadow:0 10px 25px rgba(0,20,40,.04);transition:.25s;
+  }
+  .feature:hover{transform:translateY(-5px);box-shadow:0 20px 35px rgba(11,43,92,.1);}
+  .feature .icon-circle{
+    width:64px;height:64px;margin:0 auto 1rem;border-radius:50%;
+    background:linear-gradient(135deg,var(--navy),#1b3f6e);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+  }
+  .feature h3{font-size:1.05rem;margin-bottom:.5rem;color:var(--navy);}
+  .feature p{color:var(--muted);font-size:.9rem;}
+
+  /* STEPS */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;}
+  .step{text-align:center;}
+  .step-num{
+    width:56px;height:56px;border-radius:50%;background:var(--red);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.3rem;
+    margin:0 auto 1rem;box-shadow:0 10px 20px rgba(224,58,58,.3);
+  }
+  .step h3{font-size:1.05rem;color:var(--navy);margin-bottom:.4rem;}
+  .step p{color:var(--muted);font-size:.9rem;}
+
+  /* TESTIMONIALS */
+  .testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
+  .testimonial{
+    background:#fff;padding:1.8rem;border-radius:22px;border:1px solid var(--line);
+    box-shadow:0 10px 25px rgba(0,20,40,.04);
+  }
+  .testimonial .stars{color:#f5b301;margin-bottom:.8rem;}
+  .testimonial p{color:#3d4c62;font-size:.92rem;margin-bottom:1.2rem;font-style:italic;}
+  .testimonial .user{display:flex;align-items:center;gap:.8rem;}
+  .testimonial .avatar{
+    width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;
+  }
+  .testimonial h4{font-size:.92rem;color:var(--navy);}
+  .testimonial span{font-size:.78rem;color:var(--muted);}
+
+  /* NEWSLETTER */
+  .newsletter{
+    background:linear-gradient(120deg,var(--navy),#1b3f6e);border-radius:28px;
+    padding:3rem 2rem;text-align:center;color:#fff;max-width:1200px;margin:0 auto 4rem;
+    box-shadow:0 20px 40px rgba(11,43,92,.2);
+  }
+  .newsletter h2{font-size:1.8rem;margin-bottom:.6rem;}
+  .newsletter p{opacity:.9;margin-bottom:1.5rem;}
+  .newsletter form{display:flex;gap:.6rem;max-width:480px;margin:0 auto;flex-wrap:wrap;}
+  .newsletter input{
+    flex:1;padding:.9rem 1.3rem;border-radius:40px;border:none;outline:none;
+    font-size:.95rem;min-width:200px;
+  }
+  .newsletter button{background:var(--red);color:#fff;padding:.9rem 1.8rem;border-radius:40px;font-weight:600;transition:.2s;}
+  .newsletter button:hover{background:var(--red-dark);}
+
+  /* MODAL */
+  .modal{
+    display:none;position:fixed;inset:0;background:rgba(6,18,33,.75);
+    backdrop-filter:blur(4px);align-items:center;justify-content:center;z-index:2000;padding:1.5rem;
+  }
+  .modal.open{display:flex;}
+  .modal-content{
+    background:#fff;max-width:480px;width:100%;border-radius:26px;padding:2rem;
+    box-shadow:0 40px 60px rgba(0,0,0,.3);animation:modalIn .25s ease;
+    max-height:90vh;overflow-y:auto;
+  }
+  @keyframes modalIn{from{opacity:0;transform:scale(.95);}to{opacity:1;transform:scale(1);}}
+  .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.4rem;}
+  .modal-header h2{font-size:1.4rem;color:var(--navy);}
+  .close-modal{background:none;font-size:1.8rem;color:var(--muted);line-height:1;}
+  .close-modal:hover{color:var(--red);}
+  .modal-car-detail{
+    display:flex;gap:1rem;background:var(--bg);border-radius:18px;padding:1rem;
+    align-items:center;margin-bottom:1.5rem;
+  }
+  .modal-car-detail img{width:90px;height:70px;object-fit:cover;border-radius:12px;}
+  .modal-car-detail h4{color:var(--navy);font-size:1.02rem;}
+  .modal-car-detail .price{color:var(--red);font-weight:800;font-size:1.1rem;}
+  .input-group{margin-bottom:1rem;}
+  .input-group label{
+    display:block;font-size:.78rem;font-weight:600;color:#2f3b4e;
+    margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.4px;
+  }
+  .input-group input,.input-group textarea,.input-group select{
+    width:100%;padding:.9rem 1.1rem;border:1.5px solid var(--line);
+    border-radius:14px;font-family:inherit;font-size:.95rem;transition:.2s;
+    background:#fff;color:var(--text);
+  }
+  .input-group input:focus,.input-group textarea:focus,.input-group select:focus{
+    outline:none;border-color:var(--navy);box-shadow:0 0 0 4px rgba(11,43,92,.08);
+  }
+
+  /* DETAIL PAGE */
+  .detail-wrap{max-width:1100px;margin:3rem auto;padding:0 2rem;display:grid;grid-template-columns:1.1fr 1fr;gap:2.5rem;}
+  .detail-img{border-radius:24px;overflow:hidden;box-shadow:0 20px 40px rgba(0,20,40,.1);}
+  .detail-img img{width:100%;height:420px;object-fit:cover;}
+  .detail-info h1{font-size:2rem;color:var(--navy);margin-bottom:.4rem;}
+  .type-tag{
+    display:inline-block;background:var(--bg);color:var(--navy);font-size:.75rem;
+    padding:.3rem .9rem;border-radius:30px;font-weight:600;text-transform:uppercase;
+    letter-spacing:.5px;margin-bottom:1rem;
+  }
+  .price-tag{font-size:2rem;font-weight:800;color:var(--red);margin-bottom:1.2rem;}
+  .detail-specs{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.5rem;}
+  .spec{background:#fff;border:1px solid var(--line);border-radius:14px;padding:.9rem 1rem;font-size:.9rem;}
+  .spec i{color:var(--red);margin-right:.4rem;}
+  .spec strong{color:var(--navy);display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.4px;margin-bottom:.15rem;}
+  .detail-desc{color:var(--muted);margin-bottom:1.5rem;font-size:.95rem;}
+  .detail-actions{display:flex;gap:.8rem;flex-wrap:wrap;}
+  .detail-actions .btn-primary,.detail-actions .btn-outline{padding:.9rem 1.8rem;}
+  .back-btn{display:inline-flex;align-items:center;gap:.5rem;color:var(--navy);font-weight:600;margin-bottom:1.5rem;cursor:pointer;}
+
+  /* SELL FORM */
+  .sell-form{background:#fff;border-radius:24px;padding:2.5rem;max-width:720px;margin:0 auto;border:1px solid var(--line);box-shadow:0 15px 30px rgba(0,20,40,.05);}
+  .sell-form .row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  @media(max-width:600px){.sell-form .row{grid-template-columns:1fr;}}
+
+  /* FOOTER */
+  .footer{background:#071d40;color:#b0c1d9;padding:3rem 2rem 1.5rem;margin-top:2rem;}
+  .footer-content{
+    max-width:1200px;margin:0 auto;display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2rem;margin-bottom:2rem;
+  }
+  .footer-col h4{color:#fff;margin-bottom:1rem;font-size:1.05rem;}
+  .footer-col a,.footer-col p{display:block;color:#9aafca;margin-bottom:.55rem;font-size:.9rem;transition:.2s;}
+  .footer-col a:hover{color:#fff;}
+  .footer-col .social{display:flex;gap:.6rem;margin-top:.8rem;}
+  .footer-col .social a{
+    width:36px;height:36px;border-radius:50%;background:#0f2b52;
+    display:flex;align-items:center;justify-content:center;color:#fff;margin:0;
+  }
+  .footer-col .social a:hover{background:var(--red);}
+  .footer-bottom{
+    text-align:center;padding-top:1.5rem;border-top:1px solid #1f3450;
+    font-size:.85rem;color:#8ba0bd;
+  }
+
+  /* TOAST */
+  .toast{
+    position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(120px);
+    background:var(--navy);color:#fff;padding:.9rem 2rem;border-radius:60px;
+    font-weight:500;box-shadow:0 20px 35px rgba(0,0,0,.3);opacity:0;
+    transition:.3s ease;z-index:3000;pointer-events:none;font-size:.92rem;
+  }
+  .toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
+
+  /* RESPONSIVE */
+  @media(max-width:900px){
+    .detail-wrap{grid-template-columns:1fr;}
+    .detail-img img{height:300px;}
+  }
+  @media(max-width:800px){
+    .nav-links{display:none;}
+    .navbar{padding:.9rem 1.2rem;}
+    .hero h1{font-size:2.1rem;}
+    .hero{min-height:460px;padding:2.5rem 1.2rem;}
+    .section{padding:0 1.2rem;}
+    .search-section{padding:0 1.2rem;margin-top:-30px;}
+  }
+  @media(max-width:520px){
+    .hero-stats{gap:1.5rem;}
+    .stat-number{font-size:1.5rem;}
+    .hero h1{font-size:1.8rem;}
+    .section-title h2{font-size:1.5rem;}
+    .nav-actions .btn-outline{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== NAVBAR ==================== -->
+<nav class="navbar">
+  <a href="#" class="logo" onclick="showPage('home');return false;">
+    <i class="fas fa-car"></i> CarBD
+  </a>
+  <div class="nav-links">
+    <a href="#" class="nav-link active" data-page="home" onclick="showPage('home');return false;">Home</a>
+    <a href="#" class="nav-link" data-page="buy" onclick="showPage('buy');return false;">Buy Cars</a>
+    <a href="#" class="nav-link" data-page="sell" onclick="showPage('sell');return false;">Sell Car</a>
+    <a href="#" class="nav-link" data-page="about" onclick="showPage('about');return false;">About</a>
+    <a href="#" class="nav-link" data-page="contact" onclick="showPage('contact');return false;">Contact</a>
+  </div>
+  <div class="nav-actions">
+    <button class="btn-outline" onclick="showToast('Sign in coming soon!')"><i class="fas fa-user"></i> Sign in</button>
+    <button class="btn-primary" onclick="showPage('sell')"><i class="fas fa-plus-circle"></i> Post Ad</button>
+  </div>
+</nav>
+
+<!-- ==================== HOME PAGE ==================== -->
+<div id="page-home" class="page active">
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Find your perfect car in Bangladesh</h1>
+      <p>Explore thousands of verified listings — from sedans to SUVs. Buy with confidence, sell with ease.</p>
+      <div class="hero-buttons">
+        <button class="btn-primary" onclick="showPage('buy')"><i class="fas fa-search"></i> Browse cars</button>
+        <button class="btn-outline" onclick="showPage('sell')">Sell your car</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><span class="stat-number">2,500+</span><span class="stat-label">Cars available</span></div>
+        <div class="stat-item"><span class="stat-number">150+</span><span class="stat-label">Trusted dealers</span></div>
+        <div class="stat-item"><span class="stat-number">4.8★</span><span class="stat-label">Buyer rating</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="search-section">
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input type="text" id="homeSearch" placeholder="Search by brand, model, or keyword..." onkeypress="if(event.key==='Enter')goSearch()">
+      <button onclick="goSearch()">Search</button>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="section-title">
+      <h2>Popular <span class="accent">brands</span></h2>
+      <p>We feature cars from all leading manufacturers available in Bangladesh.</p>
+    </div>
+    <div class="brands">
+      <div class="brand-card"><i class="fas fa-car-side"></i><span>Toyota</span></div>
+      <div class="brand-card"><i class="fas fa-car"></i><span>Honda</span></div>
+      <div class="brand-card"><i class="fas fa-truck-pickup"></i><span>Nissan</span></div>
+      <div class="brand-card"><i class="fas fa-truck-monster"></i><span>Mitsubishi</span></div>
+      <div class="brand-card"><i class="fas fa-car-side"></i><span>BMW</span></div>
+      <div class="brand-card"><i class="fas fa-car"></i><span>Mercedes</span></div>
+      <div class="brand-card"><i class="fas fa-truck-pickup"></i><span>Hyundai</span></div>
+      <div class="brand-card"><i class="fas fa-car"></i><span>Suzuki</span></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">
+      <h2>Featured <span class="accent">cars</span></h2>
+      <p>Handpicked listings with the best value for money.</p>
+    </div>
+    <div class="car-grid" id="featuredGrid"></div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">
+      <h2>Why choose <span class="accent">CarBD</span>?</h2>
+      <p>We make buying and selling cars in Bangladesh simple, safe, and transparent.</p>
+    </div>
+    <div class="features">
+      <div class="feature"><div class="icon-circle"><i class="fas fa-shield-alt"></i></div><h3>Verified listings</h3><p>Every car is checked and verified before going live on our platform.</p></div>
+      <div class="feature"><div class="icon-circle"><i class="fas fa-tags"></i></div><h3>Best prices</h3><p>Compare prices across dealers and private sellers to get the best deal.</p></div>
+      <div class="feature"><div class="icon-circle"><i class="fas fa-handshake"></i></div><h3>Trusted dealers</h3><p>We work with 150+ trusted dealerships across Dhaka, Chattogram and more.</p></div>
+      <div class="feature"><div class="icon-circle"><i class="fas fa-headset"></i></div><h3>24/7 support</h3><p>Our support team helps you through the entire buying process.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">
+      <h2>How it <span class="accent">works</span></h2>
+      <p>Buying your next car takes just a few simple steps.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h3>Search & filter</h3><p>Browse cars by brand, type, price and location.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Compare & choose</h3><p>View full specs, photos and prices side by side.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Contact seller</h3><p>Reach out to the seller or book a test drive.</p></div>
+      <div class="step"><div class="step-num">4</div><h3>Purchase & drive</h3><p>Complete the purchase and drive away with confidence.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">
+      <h2>What our <span class="accent">customers</span> say</h2>
+      <p>Thousands of happy buyers and sellers across Bangladesh.</p>
+    </div>
+    <div class="testimonials">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Found my dream Toyota Corolla within a week. The verification process gave me real peace of mind."</p>
+        <div class="user"><div class="avatar">RH</div><div><h4>Rahim Hossain</h4><span>Dhaka</span></div></div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Sold my Honda CR-V in just 3 days. The listing tools are super easy to use."</p>
+        <div class="user"><div class="avatar">SA</div><div><h4>Sadia Akter</h4><span>Chattogram</span></div></div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★☆</div>
+        <p>"Great selection of SUVs and the price comparison helped me negotiate better."</p>
+        <div class="user"><div class="avatar">TK</div><div><h4>Tanvir Khan</h4><span>Sylhet</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="newsletter">
+    <h2>Get new listings in your inbox</h2>
+    <p>Subscribe to receive the latest car deals and updates from CarBD.</p>
+    <form onsubmit="event.preventDefault();showToast('Subscribed successfully! 🎉');this.reset();">
+      <input type="email" placeholder="Enter your email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</div>
+
+<!-- ==================== BUY PAGE ==================== -->
+<div id="page-buy" class="page">
+  <section class="section" style="margin-top:2.5rem;">
+    <div class="section-title">
+      <h2>All <span class="accent">cars</span> for sale</h2>
+      <p>Browse our full inventory and filter by type or keyword.</p>
+    </div>
+
+    <div class="search-box" style="margin-bottom:1.5rem;">
+      <i class="fas fa-search"></i>
+      <input type="text" id="buySearch" placeholder="Search by brand, model, or keyword..." oninput="applyBuyFilters()">
+      <button onclick="applyBuyFilters()">Search</button>
+    </div>
+
+    <div class="filter-tabs" id="filterTabs">
+      <button class="filter-btn active" data-type="all" onclick="setFilter('all')">All cars</button>
+      <button class="filter-btn" data-type="Sedan" onclick="setFilter('Sedan')">Sedan</button>
+      <button class="filter-btn" data-type="SUV" onclick="setFilter('SUV')">SUV</button>
+      <button class="filter-btn" data-type="Hatchback" onclick="setFilter('Hatchback')">Hatchback</button>
+      <button class="filter-btn" data-type="Luxury" onclick="setFilter('Luxury')">Luxury</button>
+    </div>
+
+    <div class="car-grid" id="buyGrid"></div>
+  </section>
+</div>
+
+<!-- ==================== CAR DETAIL PAGE ==================== -->
+<div id="page-detail" class="page">
+  <div style="max-width:1100px;margin:2rem auto 0;padding:0 2rem;">
+    <span class="back-btn" onclick="showPage('buy')"><i class="fas fa-arrow-left"></i> Back to listings</span>
+  </div>
+  <div class="detail-wrap" id="detailWrap"></div>
+</div>
+
+<!-- ==================== SELL PAGE ==================== -->
+<div id="page-sell" class="page">
+  <section class="section" style="margin-top:2.5rem;">
+    <div class="section-title">
+      <h2>Sell your <span class="accent">car</span></h2>
+      <p>List your car on CarBD and reach thousands of buyers across Bangladesh.</p>
+    </div>
+
+    <form class="sell-form" onsubmit="event.preventDefault();showToast('Car listed successfully! We will review it shortly. ✅');this.reset();">
+      <div class="row">
+        <div class="input-group"><label>Car name</label><input type="text" placeholder="e.g. Toyota Corolla 2020" required></div>
+        <div class="input-group"><label>Brand</label><input type="text" placeholder="e.g. Toyota" required></div>
+      </div>
+      <div class="row">
+        <div class="input-group"><label>Type</label>
+          <select required>
+            <option value="">Select type</option>
+            <option>Sedan</option><option>SUV</option><option>Hatchback</option><option>Luxury</option>
+          </select>
+        </div>
+        <div class="input-group"><label>Year</label><input type="number" min="1990" max="2025" placeholder="2020" required></div>
+      </div>
+      <div class="row">
+        <div class="input-group"><label>Mileage (km)</label><input type="text" placeholder="45,000 km" required></div>
+        <div class="input-group"><label>Fuel type</label>
+          <select required><option>Petrol</option><option>Diesel</option><option>Hybrid</option><option>Electric</option></select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-group"><label>Expected price (BDT)</label><input type="number" placeholder="3200000" required></div>
+        <div class="input-group"><label>Your phone</label><input type="tel" placeholder="+880 17XX XXXXXX" required></div>
+      </div>
+      <div class="input-group"><label>Description</label><textarea rows="4" placeholder="Describe your car, condition, features..." required></textarea></div>
+      <button type="submit" class="btn-primary" style="width:100%;padding:1rem;border-radius:40px;font-size:1rem;"><i class="fas fa-upload"></i> List my car</button>
+    </form>
+  </section>
+</div>
+
+<!-- ==================== ABOUT PAGE ==================== -->
+<div id="page-about" class="page">
+  <section class="section" style="margin-top:2.5rem;">
+    <div class="section-title">
+      <h2>About <span class="accent">CarBD</span></h2>
+      <p>Bangladesh's trusted marketplace for buying and selling cars.</p>
+    </div>
+    <div class="feature" style="max-width:800px;margin:0 auto;text-align:left;padding:2rem;">
+      <p style="margin-bottom:1rem;color:#3d4c62;">CarBD was founded with one goal: make car buying and selling in Bangladesh simple, transparent, and trustworthy. Whether you're looking for a family sedan, a rugged SUV, or a luxury ride, our platform connects you with verified sellers across the country.</p>
+      <p style="margin-bottom:1rem;color:#3d4c62;">We work with over 150 trusted dealerships and thousands of private sellers to bring you the widest selection of cars — from Dhaka to Chattogram, Sylhet to Khulna.</p>
+      <p style="color:#3d4c62;">Our mission is to make every car transaction safe, fair, and hassle-free.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== CONTACT PAGE ==================== -->
+<div id="page-contact" class="page">
+  <section class="section" style="margin-top:2.5rem;">
+    <div class="section-title">
+      <h2>Contact <span class="accent">us</span></h2>
+      <p>We'd love to hear from you. Reach out any time.</p>
+    </div>
+    <form class="sell-form" onsubmit="event.preventDefault();showToast('Message sent! We will reply soon. 📩');this.reset();">
+      <div class="row">
+        <div class="input-group"><label>Your name</label><input type="text" placeholder="Full name" required></div>
+        <div class="input-group"><label>Email</label><input type="email" placeholder="you@example.com" required></div>
+      </div>
+      <div class="input-group"><label>Subject</label><input type="text" placeholder="How can we help?" required></div>
+      <div class="input-group"><label>Message</label><textarea rows="5" placeholder="Write your message..." required></textarea></div>
+      <button type="submit" class="btn-primary" style="width:100%;padding:1rem;border-radius:40px;font-size:1rem;"><i class="fas fa-paper-plane"></i> Send message</button>
+    </form>
+  </section>
+</div>
+
+<!-- ==================== PURCHASE MODAL ==================== -->
+<div class="modal" id="purchaseModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Complete purchase</h2>
+      <button class="close-modal" onclick="closeModal()">&times;</button>
+    </div>
+    <div class="modal-car-detail" id="modalCarDetail"></div>
+    <form onsubmit="handlePurchase(event)">
+      <div class="input-group"><label>Full name</label><input type="text" placeholder="e.g. Rahim Uddin" required></div>
+      <div class="input-group"><label>Phone number</label><input type="tel" placeholder="+880 17XX XXXXXX" required></div>
+      <div class="input-group"><label>Email address</label><input type="email" placeholder="you@example.com" required></div>
+      <button type="submit" class="btn-primary" style="width:100%;padding:1rem;border-radius:40px;font-size:1rem;"><i class="fas fa-check-circle"></i> Confirm purchase</button>
+    </form>
+  </div>
+</div>
+
+<!-- ==================== TOAST ==================== -->
+<div class="toast" id="toast">✅ Done!</div>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-col">
+      <h4>CarBD</h4>
+      <a onclick="showPage('about')" style="cursor:pointer;">About us</a>
+      <a onclick="showPage('contact')" style="cursor:pointer;">Contact</a>
+      <a onclick="showToast('Careers page coming soon!')" style="cursor:pointer;">Careers</a>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a onclick="showPage('buy')" style="cursor:pointer;">Buy cars</a>
+      <a onclick="showPage('sell')" style="cursor:pointer;">Sell car</a>
+      <a onclick="showToast('Blog coming soon!')" style="cursor:pointer;">Blog</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <p><i class="fas fa-phone"></i> +880 1700-000000</p>
+      <p><i class="fas fa-envelope"></i> hello@carbd.com.bd</p>
+      <p><i class="fas fa-map-marker-alt"></i> Gulshan, Dhaka, Bangladesh</p>
+    </div>
+    <div class="footer-col">
+      <h4>Follow us</h4>
+      <div class="social">
+        <a href="#" onclick="event.preventDefault();showToast('Facebook page coming soon!')"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" onclick="event.preventDefault();showToast('Instagram coming soon!')"><i class="fab fa-instagram"></i></a>
+        <a href="#" onclick="event.preventDefault();showToast('YouTube coming soon!')"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 CarBD — All rights reserved. Made with ❤️ in Bangladesh.</div>
+</footer>
+
+<script>
+/* ==================== CAR DATA ==================== */
+const cars = [
+  {id:1, name:"Toyota Corolla", type:"Sedan", price:3200000, year:2020, mileage:"45,000 km", fuel:"Petrol", location:"Dhaka", badge:"Featured",
+   img:"https://images.unsplash.com/photo-1590362891991-f776e747a588?auto=format&fit=crop&w=800&q=80",
+   desc:"Well maintained Toyota Corolla, single owner, full servicing history. Perfect family sedan."},
+  {id:2, name:"Honda CR-V", type:"SUV", price:5200000, year:2021, mileage:"28,000 km", fuel:"Petrol", location:"Dhaka", badge:"Low mileage",
+   img:"https://images.unsplash.com/photo-1568844293986-8d0400bd4745?auto=format&fit=crop&w=800&q=80",
+   desc:"Spacious Honda CR-V, accident-free, all original parts. Ideal for family road trips."},
+  {id:3, name:"Mitsubishi Pajero", type:"SUV", price:6500000, year:2019, mileage:"60,000 km", fuel:"Diesel", location:"Chattogram", badge:"",
+   img:"https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80",
+   desc:"Powerful Pajero Sport, 4WD, excellent for off-road and highway driving."},
+  {id:4, name:"Toyota Aqua", type:"Hatchback", price:2350000, year:2018, mileage:"52,000 km", fuel:"Hybrid", location:"Dhaka", badge:"Hybrid",
+   img:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80",
+   desc:"Fuel-efficient Toyota Aqua hybrid. Perfect city car with great mileage."},
+  {id:5, name:"BMW 5 Series", type:"Luxury", price:12500000, year:2022, mileage:"12,000 km", fuel:"Petrol", location:"Dhaka", badge:"Luxury",
+   img:"https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80",
+   desc:"Stunning BMW 530i in showroom condition. Fully loaded with premium features."},
+  {id:6, name:"Nissan X-Trail", type:"SUV", price:4200000, year:2020, mileage:"38,000 km", fuel:"Petrol", location:"Sylhet", badge:"",
+   img:"https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80",
+   desc:"Reliable Nissan X-Trail, 7-seater, well maintained, no accidents."},
+  {id:7, name:"Hyundai Creta", type:"SUV", price:3600000, year:2022, mileage:"15,000 km", fuel:"Petrol", location:"Dhaka", badge:"New arrival",
+   img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80",
+   desc:"Nearly new Hyundai Creta with warranty remaining. Loaded with modern features."},
+  {id:8, name:"Toyota Premio", type:"Sedan", price:2800000, year:2019, mileage:"42,000 km", fuel:"Petrol", location:"Khulna", badge:"",
+   img:"https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80",
+   desc:"Classic Toyota Premio, well kept, original paint, first owner."},
+  {id:9, name:"Mercedes C-Class", type:"Luxury", price:9800000, year:2021, mileage:"22,000 km", fuel:"Petrol", location:"Dhaka", badge:"Premium",
+   img:"https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&w=800&q=80",
+   desc:"Elegant Mercedes C200, AMG trim, panoramic roof, fully serviced."},
+  {id:10, name:"Suzuki Swift", type:"Hatchback", price:1850000, year:2020, mileage:"35,000 km", fuel:"Petrol", location:"Rajshahi", badge:"Budget",
+   img:"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80",
+   desc:"Compact Suzuki Swift, great for city driving, low fuel consumption."}
+];
+
+/* ==================== HELPERS ==================== */
+function formatPrice(p){ return '৳ ' + p.toLocaleString('en-IN'); }
+let currentFilter = 'all';
+let buySearchTerm = '';
+
+/* ==================== RENDER CAR CARD ==================== */
+function carCardHTML(car){
+  return `
+    <div class="car-card">
+      <div class="car-img">
+        <img src="${car.img}" alt="${car.name}" onerror="this.src='https://via.placeholder.com/400x250/0b2b5c/ffffff?text=${encodeURIComponent(car.name)}'">
+        ${car.badge ? `<span class="car-badge">${car.badge}</span>` : ''}
+        <span class="car-fav" onclick="showToast('Added to favorites ❤️')"><i class="far fa-heart"></i></span>
+      </div>
+      <div class="car-info">
+        <h3 class="car-name">${car.name}</h3>
+        <div class="car-type">${car.type} · ${car.location}</div>
+        <div class="car-specs">
+          <span><i class="fas fa-calendar-alt"></i>${car.year}</span>
+          <span><i class="fas fa-tachometer-alt"></i>${car.mileage}</span>
+          <span><i class="fas fa-gas-pump"></i>${car.fuel}</span>
+        </div>
+        <div class="car-price">${formatPrice(car.price)} <small>BDT</small></div>
+        <div class="car-actions">
+          <button class="buy-btn" onclick="openPurchaseModal(${car.id})"><i class="fas fa-shopping-cart"></i> Purchase</button>
+          <button class="detail-btn" onclick="showDetail(${car.id})">Details</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+/* ==================== RENDER GRIDS ==================== */
+function renderFeatured(){
+  document.getElementById('featuredGrid').innerHTML = cars.slice(0,6).map(carCardHTML).join('');
+}
+
+function renderBuyGrid(){
+  let list = cars.filter(c => {
+    const matchesType = currentFilter === 'all' || c.type === currentFilter;
+    const q = buySearchTerm.toLowerCase();
+    const matchesSearch = !q || c.name.toLowerCase().includes(q) || c.type.toLowerCase().includes(q) || c.location.toLowerCase().includes(q);
+    return matchesType && matchesSearch;
+  });
+
+  const grid = document.getElementById('buyGrid');
+  if(list.length === 0){
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3rem;background:#fff;border-radius:24px;color:#62748c;">
+      <i class="fas fa-car-crash" style="font-size:2.5rem;margin-bottom:1rem;color:#e03a3a;"></i>
+      <h3 style="color:#0b2b5c;">No cars match your search</h3>
+      <p>Try a different keyword or category.</p>
+    </div>`;
+    return;
+  }
+  grid.innerHTML = list.map(carCardHTML).join('');
+}
+
+/* ==================== FILTERS ==================== */
+function setFilter(type){
+  currentFilter = type;
+  document.querySelectorAll('#filterTabs .filter-btn').forEach(b=>{
+    b.classList.toggle('active', b.dataset.type === type);
+  });
+  renderBuyGrid();
+}
+function applyBuyFilters(){
+  buySearchTerm = document.getElementById('buySearch').value;
+  renderBuyGrid();
+}
+function goSearch(){
+  buySearchTerm = document.getElementById('homeSearch').value;
+  currentFilter = 'all';
+  showPage('buy');
+  document.getElementById('buySearch').value = buySearchTerm;
+  document.querySelectorAll('#filterTabs .filter-btn').forEach(b=>{
+    b.classList.toggle('active', b.dataset.type === 'all');
+  });
+  renderBuyGrid();
+}
+
+/* ==================== PAGE NAVIGATION ==================== */
+function showPage(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const target = document.getElementById('page-' + page);
+  if(target) target.classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(l=>{
+    l.classList.toggle('active', l.dataset.page === page);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ==================== CAR DETAIL PAGE ==================== */
+function showDetail(id){
+  const car = cars.find(c=>c.id===id);
+  if(!car) return;
+  document.getElementById('detailWrap').innerHTML = `
+    <div class="detail-img">
+      <img src="${car.img}" alt="${car.name}" onerror="this.src='https://via.placeholder.com/600x420/0b2b5c/ffffff?text=${encodeURIComponent(car.name)}'">
+    </div>
+    <div class="detail-info">
+      <h1>${car.name}</h1>
+      <span class="type-tag">${car.type} · ${car.location}</span>
+      <div class="price-tag">${formatPrice(car.price)} <small style="font-size:1rem;color:#62748c;">BDT</small></div>
+      <div class="detail-specs">
+        <div class="spec"><strong>Year</strong><i class="fas fa-calendar-alt"></i> ${car.year}</div>
+        <div class="spec"><strong>Mileage</strong><i class="fas fa-tachometer-alt"></i> ${car.mileage}</div>
+        <div class="spec"><strong>Fuel</strong><i class="fas fa-gas-pump"></i> ${car.fuel}</div>
+        <div class="spec"><strong>Type</strong><i class="fas fa-car"></i> ${car.type}</div>
+      </div>
+      <p class="detail-desc">${car.desc}</p>
+      <div class="detail-actions">
+        <button class="btn-primary" onclick="openPurchaseModal(${car.id})"><i class="fas fa-shopping-cart"></i> Purchase now</button>
+        <button class="btn-outline" onclick="showToast('Seller contact: +880 1700-000000 📞')"><i class="fas fa-phone"></i> Contact seller</button>
+      </div>
+    </div>`;
+  showPage('detail');
+}
+
+/* ==================== PURCHASE MODAL ==================== */
+function openPurchaseModal(id){
+  const car = cars.find(c=>c.id===id);
+  if(!car) return;
+  document.getElementById('modalCarDetail').innerHTML = `
+    <img src="${car.img}" alt="${car.name}" onerror="this.src='https://via.placeholder.com/200x150/0b2b5c/ffffff?text=Car'">
+    <div>
+      <h4>${car.name} (${car.year})</h4>
+      <div class="price">${formatPrice(car.price)} BDT</div>
+    </div>`;
+  document.getElementById('purchaseModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(){
+  document.getElementById('purchaseModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function handlePurchase(e){
+  e.preventDefault();
+  closeModal();
+  showToast('✅ Purchase confirmed! Our team will contact you.');
+  e.target.reset();
+}
+window.addEventListener('click', e=>{
+  if(e.target.id === 'purchaseModal') closeModal();
+});
+
+/* ==================== TOAST ==================== */
+let toastTimer;
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 3000);
+}
+
+/* ==================== INIT ==================== */
+renderFeatured();
+renderBuyGrid();
+</script>
+
+</body>
+</html>
